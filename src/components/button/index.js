@@ -4,7 +4,7 @@ import './button.css'
 function Button(props){
 
     return(
-        <button className={`btn btn-info col-${props.col}`}>{props.name}</button>
+        <button className={`btn btn-light col-${props.col}`} onClick={()=>props.onClick(props.name)}>{props.name}</button>
     )
 }
 
