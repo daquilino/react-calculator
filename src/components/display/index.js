@@ -8,6 +8,7 @@ function Display (props){
 
 
 // Future more advanced display
+// allow typing values, 
 // class Display extends Component {
 
 //     constructor(props){
