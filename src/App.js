@@ -68,7 +68,6 @@ class App extends Component {
 
         </div>
         </Row>
-        <p>Need to figure out the display form onChange.  Maybe not use an input for diplay.</p>
       </main>
     );
   }
