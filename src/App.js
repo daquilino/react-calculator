@@ -18,50 +18,56 @@ class App extends Component {
 
 
   clear = ()=>{
-    this.setState({num1:0, num2:0, result:0})
+    this.setState({num1:0, num2:0, result:0, operator:null})
   }
 
-  click = (data)=>{
+  click = (data, type)=>{
       console.log("data:", data);
+      console.log("type:", type);
       this.setState({result: "hello"})
   }
 
+  calculate = ()=>{
+    console.log("...calculating")
+  }
 
   render() {
     return (
       <main className="container">
-        <div className="calculator">
+        <Row>
+        <div className="calculator col-md-5" >
 
           <Row>
             <Display value={this.state.result} />
           </Row>
           <Row>
-            <Button name={7} onClick={this.click} />
-            <Button name={8} />
-            <Button name={9} />
-            <Button name={"+"} />
+            <Button name={7} type={"number"} onClick={this.click} />
+            <Button name={8} type={"number"} onClick={this.click}/>
+            <Button name={9} type={"number"} onClick={this.click}/>
+            <Button name={"+"} type={"operator"} onClick={this.click}/>
           </Row>
           <Row>
-            <Button name={4} />
-            <Button name={5} />
-            <Button name={6} />
-            <Button name={"-"} />
+            <Button name={4} type={"number"} onClick={this.click}/>
+            <Button name={5} type={"number"} onClick={this.click}/>
+            <Button name={6} type={"number"} onClick={this.click}/>
+            <Button name={"-"} type={"operator"} onClick={this.click}/>
           </Row>
           <Row>
-            <Button name={1} />
-            <Button name={2} />
-            <Button name={3} />
-            <Button name={"x"} />
+            <Button name={1} type={"number"} onClick={this.click}/>
+            <Button name={2} type={"number"} onClick={this.click}/>
+            <Button name={3} type={"number"} onClick={this.click}/>
+            <Button name={"x"} type={"operator"} onClick={this.click}/>
           </Row>
           <Row>
-            <Button name={"."} />
-            <Button name={0} />
+            <Button name={"."} type={"number"} onClick={this.click}/>
+            <Button name={0} type={"number"} onClick={this.click}/>
             <Button name={"C"} onClick={this.clear} />
-            <Button name={"/"} />
+            <Button name={"/"} type={"operator"} onClick={this.click}/>
           </Row>
-          <Row><Button name={"="} col={12} /></Row>
+          <Row><Button name={"="} col={12} onClick={this.calculate}/></Row>
 
         </div>
+        </Row>
         <p>Need to figure out the display form onChange.  Maybe not use an input for diplay.</p>
       </main>
     );

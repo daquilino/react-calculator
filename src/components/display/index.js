@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import './display.css'
 
 
-function display (props){
-    return (<div>{props.results = 0}</div>)
+function Display (props){
+    return (<div className={"display"}>{props.results}</div>)
 }
-
-
-
 
 
 // Future more advanced display
