@@ -16,7 +16,6 @@ class App extends Component {
     }
   }
 
-
   clear = ()=>{
     this.setState({num1:0, num2:0, result:0, operator:null})
   }
@@ -34,8 +33,9 @@ class App extends Component {
   render() {
     return (
       <main className="container">
+        <h2>{this.x}</h2>
         <Row>
-        <div className="calculator col-md-5" >
+        <div className="calculator col-md-3" >
 
           <Row>
             <Display value={this.state.result} />
