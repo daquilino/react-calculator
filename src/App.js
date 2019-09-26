@@ -12,8 +12,12 @@ class App extends Component {
       num1: 0,
       num2: 0,
       operator: null,
-      result: 0
+      result: 0,
+      display: 0
     }
+
+    let decimalFlag = false;
+
   }
 
   clear = ()=>{
@@ -21,8 +25,14 @@ class App extends Component {
   }
 
   click = (data, type)=>{
-      console.log("data:", data);
-      console.log("type:", type);
+      console.log("data:", data, "type:", type);
+      
+      //this means we are still entering first number
+      if(!this.state.operator && type === "number"){
+
+      }
+
+
       this.setState({result: "hello"})
   }
 
@@ -33,12 +43,11 @@ class App extends Component {
   render() {
     return (
       <main className="container">
-        <h2>{this.x}</h2>
         <Row>
         <div className="calculator col-md-3" >
 
           <Row>
-            <Display value={this.state.result} />
+            <Display display={this.state.display} />
           </Row>
           <Row>
             <Button name={7} type={"number"} onClick={this.click} />
