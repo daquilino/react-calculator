@@ -16,19 +16,26 @@ class App extends Component {
       display: 0
     }
 
-    let decimalFlag = false;
+    this.decimalFlag = false;
 
   }
+
+  outside = "outside";
 
   clear = ()=>{
-    this.setState({num1:0, num2:0, result:0, operator:null})
+    this.decimalFlag = false;
+    this.setState({num1:0, num2:0, result:0, operator:null});
   }
 
-  click = (data, type)=>{
-      console.log("data:", data, "type:", type);
-      
+  click = (data, role)=>{
+  
+      console.log("data:", data, "role:", role);
+
+      //disables decimal button when pressed as to only use once.
+      if(data === ".") this.decimalFlag = true;
+
       //this means we are still entering first number
-      if(!this.state.operator && type === "number"){
+      if(!this.state.operator && role === "number"){
 
       }
 
@@ -45,33 +52,32 @@ class App extends Component {
       <main className="container">
         <Row>
         <div className="calculator col-md-3" >
-
           <Row>
             <Display display={this.state.display} />
           </Row>
           <Row>
-            <Button name={7} type={"number"} onClick={this.click} />
-            <Button name={8} type={"number"} onClick={this.click}/>
-            <Button name={9} type={"number"} onClick={this.click}/>
-            <Button name={"+"} type={"operator"} onClick={this.click}/>
+            <Button name={7} buttonrole={"number"} onClick={this.click}/>
+            <Button name={8} buttonrole={"number"} onClick={this.click}/>
+            <Button name={9} buttonrole={"number"} onClick={this.click}/>
+            <Button name={"+"} buttonrole={"operator"} onClick={this.click}/>
           </Row>
           <Row>
-            <Button name={4} type={"number"} onClick={this.click}/>
-            <Button name={5} type={"number"} onClick={this.click}/>
-            <Button name={6} type={"number"} onClick={this.click}/>
-            <Button name={"-"} type={"operator"} onClick={this.click}/>
+            <Button name={4} buttonrole={"number"} onClick={this.click}/>
+            <Button name={5} buttonrole={"number"} onClick={this.click}/>
+            <Button name={6} buttonrole={"number"} onClick={this.click}/>
+            <Button name={"-"} buttonrole={"operator"} onClick={this.click}/>
           </Row>
           <Row>
-            <Button name={1} type={"number"} onClick={this.click}/>
-            <Button name={2} type={"number"} onClick={this.click}/>
-            <Button name={3} type={"number"} onClick={this.click}/>
-            <Button name={"x"} type={"operator"} onClick={this.click}/>
+            <Button name={1} buttonrole={"number"} onClick={this.click}/>
+            <Button name={2} buttonrole={"number"} onClick={this.click}/>
+            <Button name={3} buttonrole={"number"} onClick={this.click}/>
+            <Button name={"x"} buttonrole={"operator"} onClick={this.click}/>
           </Row>
           <Row>
-            <Button name={"."} type={"number"} onClick={this.click}/>
-            <Button name={0} type={"number"} onClick={this.click}/>
+            <Button name={"."} buttonrole={"number"} onClick={this.click} disabled={this.decimalFlag}/>
+            <Button name={0} buttonrole={"number"} onClick={this.click}/>
             <Button name={"C"} onClick={this.clear} />
-            <Button name={"/"} type={"operator"} onClick={this.click}/>
+            <Button name={"/"} buttonrole={"operator"} onClick={this.click}/>
           </Row>
           <Row><Button name={"="} col={12} onClick={this.calculate}/></Row>
 
