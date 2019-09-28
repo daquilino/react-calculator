@@ -39,6 +39,8 @@ class App extends Component {
 
       }
 
+      if(roll === "operator") this.setState{operator: data}
+
 
       this.setState({result: "hello"})
   }
@@ -51,6 +53,7 @@ class App extends Component {
     return (
       <main className="container">
         <Row>
+         <h6>op:{this.state.operator}</h6> 
         <div className="calculator col-md-3" >
           <Row>
             <Display display={this.state.display} />
