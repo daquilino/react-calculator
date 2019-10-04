@@ -29,6 +29,23 @@ class App extends Component {
 
   click = (data, role) => {
 
+    // pseudo no task/ order may need adjustments
+
+    // determine type of button number or operator
+    // make decimal own type
+
+    //   if number first or second
+    
+    //   if decemal was already used (for each number)
+
+    // if operator are both numbers complete
+
+    // if opertor check for any issues (like divide by zero)
+
+    
+
+
+
     console.log("data:", data, "role:", role);
 
     //disables decimal button when pressed as to only use once.
