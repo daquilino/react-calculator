@@ -20,33 +20,20 @@ class App extends Component {
 
   }
 
-  outside = "outside";
-
   clear = () => {
     this.decimalFlag = false;
     this.setState({ num1: 0, num2: 0, result: 0, operator: null });
   }
 
-  click = (data, role) => {
+  // handles equal button click
+  calculate = () => {
+    console.log("...calculating")
+  }
 
-    // pseudo no task/ order may need adjustments
+  // handles number button click
+  numberButtonHandler = (number) => {
 
-    // determine type of button number or operator
-    // make decimal own type
-
-    //   if number first or second
-    
-    //   if decemal was already used (for each number)
-
-    // if operator are both numbers complete
-
-    // if opertor check for any issues (like divide by zero)
-
-    
-
-
-
-    console.log("data:", data, "role:", role);
+    console.log("num:", num);
 
     //disables decimal button when pressed as to only use once.
     if (data === ".") this.decimalFlag = true;
@@ -62,9 +49,11 @@ class App extends Component {
     this.setState({ result: "hello" })
   }
 
-  calculate = () => {
-    console.log("...calculating")
+  // handles operator button click
+  operatorButtonHander = (oper)=>{
+    console.log("oper:", oper);
   }
+  
 
   render() {
     return (
