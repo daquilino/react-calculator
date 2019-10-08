@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   // handles operator button click
-  operatorButtonHander = (oper)=>{
+  operatorButtonHandler = (oper)=>{
     console.log("oper:", oper);
   }
   
