@@ -33,37 +33,39 @@ class App extends Component {
   // handles number button click
   numberButtonHandler = (num) => {
 
-    //1. concat numbers
+    //disables decimal button when pressed as to only use once per number.
+    if (num === ".") this.decimalFlag = true;
+    var tempnum;
 
     // operator button not pressed, entering first number
-    if(!this.state.operator){
+    if (!this.state.operator) {
+      tempnum = this.state.num1;
 
-      var 
+      //Ternary used to remove leading zero from number unless decimal less than 1;  
+      tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
 
-      
+      this.setState({ num1: tempnum, display: tempnum });
+
     }
+    else {
+      tempnum = this.state.num2;
 
+      //Ternary used to remove leading zero from number unless decimal less than 1;  
+      tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
 
+      this.setState({ num2: tempnum, display: tempnum });
 
-    console.log("num:", num);
-
-    //disables decimal button when pressed as to only use once.
-    //if (data === ".") this.decimalFlag = true;
-
-    //this means we are still entering first number
-    //if (!this.state.operator && role === "number") {
-
-   // }
+    }
 
   }
 
   // handles operator button click
   // When clicked sets operator, also reinstates decimal button through flag for use in second number
-  operatorButtonHandler = (oper)=>{
+  operatorButtonHandler = (oper) => {
     this.decimalFlag = false;
-    this.setState({operator: oper, display:oper});
+    this.setState({ operator: oper, display: oper });
   }
-  
+
 
   render() {
     return (
@@ -92,10 +94,10 @@ class App extends Component {
               <Button name={"×"} onClick={this.operatorButtonHandler} />
             </Row>
             <Row>
-              <Button name={"."}  onClick={this.numberButtonHandler} disabled={this.decimalFlag} />
-              <Button name={0}  onClick={this.numberButtonHandler} />
+              <Button name={"."} onClick={this.numberButtonHandler} disabled={this.decimalFlag} />
+              <Button name={0} onClick={this.numberButtonHandler} />
               <Button name={"C"} onClick={this.clear} />
-              <Button name={"÷"}  onClick={this.operatorButtonHandler} />
+              <Button name={"÷"} onClick={this.operatorButtonHandler} />
             </Row>
             <Row><Button name={"="} col={12} onClick={this.calculate} /></Row>
 
