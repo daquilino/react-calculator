@@ -9,11 +9,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      num1: 0,
-      num2: 0,
+      num1: "0",
+      num2: "0",
       operator: null,
       result: 0,
-      display: 0
+      display: "0"
     }
 
     this.decimalFlag = false;
@@ -33,6 +33,15 @@ class App extends Component {
   // handles number button click
   numberButtonHandler = (num) => {
 
+    //1. concat numbers
+
+    // operator button not pressed, entering first number
+    if(!this.state.operator){
+
+    }
+
+
+
     console.log("num:", num);
 
     //disables decimal button when pressed as to only use once.
@@ -43,15 +52,13 @@ class App extends Component {
 
    // }
 
-    //if (role === "operator") this.setState({ operator: data });
 
-
-    //this.setState({ result: "hello" })
   }
 
   // handles operator button click
   operatorButtonHandler = (oper)=>{
     console.log("oper:", oper);
+    this.setState({operator: oper, display:oper});
   }
   
 
@@ -79,13 +86,13 @@ class App extends Component {
               <Button name={1} onClick={this.numberButtonHandler} />
               <Button name={2} onClick={this.numberButtonHandler} />
               <Button name={3} onClick={this.numberButtonHandler} />
-              <Button name={"x"} onClick={this.operatorButtonHandler} />
+              <Button name={"×"} onClick={this.operatorButtonHandler} />
             </Row>
             <Row>
               <Button name={"."}  onClick={this.click} disabled={this.decimalFlag} />
               <Button name={0}  onClick={this.numberButtonHandler} />
               <Button name={"C"} onClick={this.clear} />
-              <Button name={"/"}  onClick={this.operatorButtonHander} />
+              <Button name={"÷"}  onClick={this.operatorButtonHandler} />
             </Row>
             <Row><Button name={"="} col={12} onClick={this.calculate} /></Row>
 
