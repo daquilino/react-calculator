@@ -31,22 +31,22 @@ class App extends Component {
   }
 
   // handles number button click
-  numberButtonHandler = (number) => {
+  numberButtonHandler = (num) => {
 
     console.log("num:", num);
 
     //disables decimal button when pressed as to only use once.
-    if (data === ".") this.decimalFlag = true;
+    //if (data === ".") this.decimalFlag = true;
 
     //this means we are still entering first number
-    if (!this.state.operator && role === "number") {
+    //if (!this.state.operator && role === "number") {
 
-    }
+   // }
 
-    if (role === "operator") this.setState({ operator: data });
+    //if (role === "operator") this.setState({ operator: data });
 
 
-    this.setState({ result: "hello" })
+    //this.setState({ result: "hello" })
   }
 
   // handles operator button click
