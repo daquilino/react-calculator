@@ -64,28 +64,28 @@ class App extends Component {
               <Display display={this.state.display} />
             </Row>
             <Row>
-              <Button name={7} buttonrole={"number"} onClick={this.click} />
-              <Button name={8} buttonrole={"number"} onClick={this.click} />
-              <Button name={9} buttonrole={"number"} onClick={this.click} />
-              <Button name={"+"} buttonrole={"operator"} onClick={this.click} />
+              <Button name={7}  onClick={this.click} />
+              <Button name={8}  onClick={this.click} />
+              <Button name={9}  onClick={this.click} />
+              <Button name={"+"}  onClick={this.click} />
             </Row>
             <Row>
-              <Button name={4} buttonrole={"number"} onClick={this.click} />
-              <Button name={5} buttonrole={"number"} onClick={this.click} />
-              <Button name={6} buttonrole={"number"} onClick={this.click} />
-              <Button name={"-"} buttonrole={"operator"} onClick={this.click} />
+              <Button name={4}  onClick={this.click} />
+              <Button name={5}  onClick={this.click} />
+              <Button name={6}  onClick={this.click} />
+              <Button name={"-"}  onClick={this.click} />
             </Row>
             <Row>
-              <Button name={1} buttonrole={"number"} onClick={this.click} />
-              <Button name={2} buttonrole={"number"} onClick={this.click} />
-              <Button name={3} buttonrole={"number"} onClick={this.click} />
-              <Button name={"x"} buttonrole={"operator"} onClick={this.click} />
+              <Button name={1}  onClick={this.click} />
+              <Button name={2}  onClick={this.click} />
+              <Button name={3}  onClick={this.click} />
+              <Button name={"x"}  onClick={this.click} />
             </Row>
             <Row>
-              <Button name={"."} buttonrole={"number"} onClick={this.click} disabled={this.decimalFlag} />
-              <Button name={0} buttonrole={"number"} onClick={this.click} />
+              <Button name={"."}  onClick={this.click} disabled={this.decimalFlag} />
+              <Button name={0}  onClick={this.click} />
               <Button name={"C"} onClick={this.clear} />
-              <Button name={"/"} buttonrole={"operator"} onClick={this.click} />
+              <Button name={"/"}  onClick={this.click} />
             </Row>
             <Row><Button name={"="} col={12} onClick={this.calculate} /></Row>
 
