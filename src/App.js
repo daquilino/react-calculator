@@ -64,28 +64,28 @@ class App extends Component {
               <Display display={this.state.display} />
             </Row>
             <Row>
-              <Button name={7}  onClick={this.click} />
-              <Button name={8}  onClick={this.click} />
-              <Button name={9}  onClick={this.click} />
-              <Button name={"+"}  onClick={this.click} />
+              <Button name={7} onClick={this.numberButtonHandler} />
+              <Button name={8} onClick={this.numberButtonHandler} />
+              <Button name={9} onClick={this.numberButtonHandler} />
+              <Button name={"+"} onClick={this.operatorButtonHandler} />
             </Row>
             <Row>
-              <Button name={4}  onClick={this.click} />
-              <Button name={5}  onClick={this.click} />
-              <Button name={6}  onClick={this.click} />
-              <Button name={"-"}  onClick={this.click} />
+              <Button name={4} onClick={this.numberButtonHandler} />
+              <Button name={5} onClick={this.numberButtonHandler} />
+              <Button name={6} onClick={this.numberButtonHandler} />
+              <Button name={"-"} onClick={this.operatorButtonHandler} />
             </Row>
             <Row>
-              <Button name={1}  onClick={this.click} />
-              <Button name={2}  onClick={this.click} />
-              <Button name={3}  onClick={this.click} />
-              <Button name={"x"}  onClick={this.click} />
+              <Button name={1} onClick={this.numberButtonHandler} />
+              <Button name={2} onClick={this.numberButtonHandler} />
+              <Button name={3} onClick={this.numberButtonHandler} />
+              <Button name={"x"} onClick={this.operatorButtonHandler} />
             </Row>
             <Row>
               <Button name={"."}  onClick={this.click} disabled={this.decimalFlag} />
-              <Button name={0}  onClick={this.click} />
+              <Button name={0}  onClick={this.numberButtonHandler} />
               <Button name={"C"} onClick={this.clear} />
-              <Button name={"/"}  onClick={this.click} />
+              <Button name={"/"}  onClick={this.operatorButtonHander} />
             </Row>
             <Row><Button name={"="} col={12} onClick={this.calculate} /></Row>
 
