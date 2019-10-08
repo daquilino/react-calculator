@@ -5,7 +5,7 @@ function Button(props){
     return(
         <button 
             className={`btn btn-light col-${props.col}`} 
-            onClick={()=>props.onClick(props.name, props.buttonrole)} 
+            onClick={()=>props.onClick(props.name)} 
             disabled={props.disabled}
         >
             {props.name}
