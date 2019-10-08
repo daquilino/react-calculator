@@ -22,7 +22,7 @@ class App extends Component {
 
   clear = () => {
     this.decimalFlag = false;
-    this.setState({ num1: 0, num2: 0, result: 0, operator: null });
+    this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0" });
   }
 
   // handles equal button click
@@ -38,6 +38,9 @@ class App extends Component {
     // operator button not pressed, entering first number
     if(!this.state.operator){
 
+      var 
+
+      
     }
 
 
@@ -52,12 +55,12 @@ class App extends Component {
 
    // }
 
-
   }
 
   // handles operator button click
+  // When clicked sets operator, also reinstates decimal button through flag for use in second number
   operatorButtonHandler = (oper)=>{
-    console.log("oper:", oper);
+    this.decimalFlag = false;
     this.setState({operator: oper, display:oper});
   }
   
@@ -89,7 +92,7 @@ class App extends Component {
               <Button name={"×"} onClick={this.operatorButtonHandler} />
             </Row>
             <Row>
-              <Button name={"."}  onClick={this.click} disabled={this.decimalFlag} />
+              <Button name={"."}  onClick={this.numberButtonHandler} disabled={this.decimalFlag} />
               <Button name={0}  onClick={this.numberButtonHandler} />
               <Button name={"C"} onClick={this.clear} />
               <Button name={"÷"}  onClick={this.operatorButtonHandler} />
