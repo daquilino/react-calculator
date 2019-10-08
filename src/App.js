@@ -59,7 +59,7 @@ class App extends Component {
     return (
       <main className="container">
         <Row>
-          <div className="calculator col-md-3" >
+          <div className="calculator col-sm-6 col-lg-4" >
             <Row>
               <Display display={this.state.display} />
             </Row>
