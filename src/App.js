@@ -13,7 +13,8 @@ class App extends Component {
       num2: "0",
       operator: null,
       result: 0,
-      display: "0"
+      display: "0",
+      disableAll: false
     }
 
     this.decimalFlag = false;
@@ -37,7 +38,7 @@ class App extends Component {
       tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
 
       this.setState({ num1: tempnum, display: tempnum });
-
+    
     }
     else {
       tempnum = this.state.num2;
@@ -61,7 +62,7 @@ class App extends Component {
   //==================================================================================
   clear = () => {
     this.decimalFlag = false;
-    this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0" });
+    this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false });
   }
 
   //==================================================================================
@@ -73,24 +74,25 @@ class App extends Component {
     switch (this.state.operator) {
       case "+":
         result = (parseInt(this.state.num1) + parseInt(this.state.num2)).toString();
-        this.setState({result: result, display: result});
+        this.setState({result: result, display: result, :true});
         break;
       case "-":
           result = (parseInt(this.state.num1) - parseInt(this.state.num2)).toString();
-          this.setState({result: result, display: result});
+          this.setState({result: result, display: result, :true});
 
         break;
       case "×":
           result = (parseInt(this.state.num1) * parseInt(this.state.num2)).toString();
-          this.setState({result: result, display: result});
+          this.setState({result: result, display: result, :true});
 
         break;
       case "÷":
+          // Checks in denominator is zero before divide, 
           result = (this.state.num2 === "0")
           ? "Cannot Divide By Zero"
           : (parseInt(this.state.num1) / parseInt(this.state.num2)).toString();
           
-          this.setState({result: result, display: result});
+          this.setState({result: result, display: result, :true});
 
         break;
 
@@ -109,30 +111,30 @@ class App extends Component {
               <Display display={this.state.display} />
             </Row>
             <Row>
-              <Button name={7} onClick={this.numberButtonHandler} />
-              <Button name={8} onClick={this.numberButtonHandler} />
-              <Button name={9} onClick={this.numberButtonHandler} />
-              <Button name={"+"} onClick={this.operatorButtonHandler} />
+              <Button name={7} onClick={this.numberButtonHandler} disabled={this.state.} />
+              <Button name={8} onClick={this.numberButtonHandler} disabled={this.state.} />
+              <Button name={9} onClick={this.numberButtonHandler} disabled={this.state.}/>
+              <Button name={"+"} onClick={this.operatorButtonHandler} disabled={this.state.}/>
             </Row>
             <Row>
-              <Button name={4} onClick={this.numberButtonHandler} />
-              <Button name={5} onClick={this.numberButtonHandler} />
-              <Button name={6} onClick={this.numberButtonHandler} />
-              <Button name={"-"} onClick={this.operatorButtonHandler} />
+              <Button name={4} onClick={this.numberButtonHandler} disabled={this.state.}/>
+              <Button name={5} onClick={this.numberButtonHandler} disabled={this.state.}/>
+              <Button name={6} onClick={this.numberButtonHandler} disabled={this.state.}/>
+              <Button name={"-"} onClick={this.operatorButtonHandler} disabled={this.state.}/>
             </Row>
             <Row>
-              <Button name={1} onClick={this.numberButtonHandler} />
-              <Button name={2} onClick={this.numberButtonHandler} />
-              <Button name={3} onClick={this.numberButtonHandler} />
-              <Button name={"×"} onClick={this.operatorButtonHandler} />
+              <Button name={1} onClick={this.numberButtonHandler} disabled={this.state.}/>
+              <Button name={2} onClick={this.numberButtonHandler} disabled={this.state.}/>
+              <Button name={3} onClick={this.numberButtonHandler} disabled={this.state.}/>
+              <Button name={"×"} onClick={this.operatorButtonHandler} disabled={this.state.}/>
             </Row>
             <Row>
-              <Button name={"."} onClick={this.numberButtonHandler} disabled={this.decimalFlag} />
-              <Button name={0} onClick={this.numberButtonHandler} />
+              <Button name={"."} onClick={this.numberButtonHandler} disabled={this.decimalFlag || this.state.} />
+              <Button name={0} onClick={this.numberButtonHandler} disabled={this.state.}/>
               <Button name={"C"} onClick={this.clear} />
-              <Button name={"÷"} onClick={this.operatorButtonHandler} />
+              <Button name={"÷"} onClick={this.operatorButtonHandler} disabled={this.state.}/>
             </Row>
-            <Row><Button name={"="} col={12} onClick={this.calculate} /></Row>
+            <Row><Button name={"="} col={12} onClick={this.calculate} disabled={this.state.}/></Row>
 
           </div>
         </Row>
