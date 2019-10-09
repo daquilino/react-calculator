@@ -20,22 +20,14 @@ class App extends Component {
 
   }
 
-  clear = () => {
-    this.decimalFlag = false;
-    this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0" });
-  }
-
-  // handles equal button click
-  calculate = () => {
-    console.log("...calculating")
-  }
-
+  //==================================================================================
   // handles number button click
   numberButtonHandler = (num) => {
 
     //disables decimal button when pressed as to only use once per number.
     if (num === ".") this.decimalFlag = true;
-    var tempnum;
+
+    let tempnum;
 
     // operator button not pressed, entering first number
     if (!this.state.operator) {
@@ -56,14 +48,55 @@ class App extends Component {
       this.setState({ num2: tempnum, display: tempnum });
 
     }
-
   }
 
+  //==================================================================================
   // handles operator button click
   // When clicked sets operator, also reinstates decimal button through flag for use in second number
   operatorButtonHandler = (oper) => {
     this.decimalFlag = false;
     this.setState({ operator: oper, display: oper });
+  }
+
+  //==================================================================================
+  clear = () => {
+    this.decimalFlag = false;
+    this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0" });
+  }
+
+  //==================================================================================
+  // handles equal button click
+  calculate = () => {
+
+    let result;
+
+    switch (this.state.operator) {
+      case "+":
+        result = (parseInt(this.state.num1) + parseInt(this.state.num2)).toString();
+        this.setState({result: result, display: result});
+        break;
+      case "-":
+          result = (parseInt(this.state.num1) - parseInt(this.state.num2)).toString();
+          this.setState({result: result, display: result});
+
+        break;
+      case "×":
+          result = (parseInt(this.state.num1) * parseInt(this.state.num2)).toString();
+          this.setState({result: result, display: result});
+
+        break;
+      case "÷":
+          result = (this.state.num2 === "0")
+          ? "Cannot Divide By Zero"
+          : (parseInt(this.state.num1) / parseInt(this.state.num2)).toString();
+          
+          this.setState({result: result, display: result});
+
+        break;
+
+      default:
+        break;
+    }
   }
 
 
