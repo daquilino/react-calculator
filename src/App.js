@@ -18,7 +18,7 @@ class App extends Component {
     }
 
     this.decimalFlag = false;
-
+    //this.secondOp = false;
   }
 
   //==================================================================================
@@ -42,8 +42,9 @@ class App extends Component {
 
       this.setState({ num1: tempnum, display: tempnum });
     }
+    // Entering second number
     else {
-      
+      this.secondOp = true;
       tempnum = this.state.num2;
       
       // Toggles number to neg/pos if 'Neg' button pressed
@@ -63,6 +64,7 @@ class App extends Component {
   operatorButtonHandler = (oper) => {
     this.decimalFlag = false;
     this.setState({ operator: oper, display: oper });
+    //this.calculate();
   }
 
   //==================================================================================
@@ -80,16 +82,16 @@ class App extends Component {
     switch (this.state.operator) {
       case "+":
         result = (parseInt(this.state.num1) + parseInt(this.state.num2)).toString();
-        this.setState({ result: result, display: result, disableAll: true });
+        this.setState({ result: result, display: result, num1: result, num2: "0" });
         break;
       case "-":
         result = (parseInt(this.state.num1) - parseInt(this.state.num2)).toString();
-        this.setState({ result: result, display: result, disableAll: true });
+        this.setState({ result: result, display: result, num1: result, num2: "0" });
 
         break;
       case "×":
         result = (parseInt(this.state.num1) * parseInt(this.state.num2)).toString();
-        this.setState({ result: result, display: result, disableAll: true });
+        this.setState({ result: result, display: result, num1: result, num2: "0" });
 
         break;
       case "÷":
