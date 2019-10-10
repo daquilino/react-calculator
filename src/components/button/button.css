@@ -1,4 +1,6 @@
 button {
-    margin: 1px;
-    width:24%;
+    margin: 1px; 
+    width:100%;
 }
+
+div.col {padding:1px;}
