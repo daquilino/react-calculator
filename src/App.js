@@ -18,6 +18,9 @@ class App extends Component {
     }
 
     this.decimalFlag = false;
+
+
+    // Test code to keep entering numbers and operators. Alsoused flag above; 
     //this.secondOp = false;
   }
 
@@ -44,7 +47,9 @@ class App extends Component {
     }
     // Entering second number
     else {
-      this.secondOp = true;
+      // Test code to keep entering numbers and operators. Alsoused flag above; 
+      //this.secondOp = true;
+      
       tempnum = this.state.num2;
       
       // Toggles number to neg/pos if 'Neg' button pressed
@@ -64,7 +69,10 @@ class App extends Component {
   operatorButtonHandler = (oper) => {
     this.decimalFlag = false;
     this.setState({ operator: oper, display: oper });
-    //this.calculate();
+    
+    
+    // Test code to keep entering numbers and operators. Alsoused flag above;  
+    this.calculate();
   }
 
   //==================================================================================
