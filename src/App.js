@@ -34,17 +34,23 @@ class App extends Component {
     if (!this.state.operator) {
       tempnum = this.state.num1;
 
-      //Ternary used to remove leading zero from number unless decimal less than 1;  
-      tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
+      // Toggles number to neg/pos if 'Neg' button pressed
+      if (num === "Neg") tempnum = (parseInt(tempnum) * -1).toString(); 
+      //Ternary used to remove leading zero from number unless decimal less than 1; 
+      else tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
+      
 
       this.setState({ num1: tempnum, display: tempnum });
-
     }
     else {
+      
       tempnum = this.state.num2;
-
+      
+      // Toggles number to neg/pos if 'Neg' button pressed
+      if (num === "Neg") tempnum = (parseInt(tempnum) * -1).toString();
       //Ternary used to remove leading zero from number unless decimal less than 1;  
-      tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
+      else tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
+      
 
       this.setState({ num2: tempnum, display: tempnum });
 
@@ -100,7 +106,6 @@ class App extends Component {
         break;
     }
   }
-
 
   render() {
     return (
