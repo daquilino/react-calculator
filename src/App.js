@@ -68,7 +68,7 @@ class App extends Component {
   // When clicked sets operator, also reinstates decimal button through flag for use in second number
   operatorButtonHandler = (oper) => {
     this.decimalFlag = false;
-    this.setState({ operator: oper, display: oper });
+    this.setState({ operator: oper });
     
     
     // Test code to keep entering numbers and operators. Alsoused flag above;  
