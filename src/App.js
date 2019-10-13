@@ -18,6 +18,7 @@ class App extends Component {
     }
 
     this.decimalFlag = false;
+    this.equalFlag = false;
 
 
     // Test code to keep entering numbers and operators. Alsoused flag above; 
@@ -86,6 +87,7 @@ class App extends Component {
   calculate = () => {
 
     let result;
+    this.equalFlag = true;
 
     switch (this.state.operator) {
       case "+":
