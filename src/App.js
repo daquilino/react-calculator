@@ -72,10 +72,11 @@ class App extends Component {
   // When clicked sets operator, also reinstates decimal button through flag for use in second number
   operatorButtonHandler = (oper) => {
     this.decimalFlag = false;
+    this.equalFlag = false;
     this.setState({ operator: oper });
 
 
-    // Test code to keep entering numbers and operators. Alsoused flag above;  
+    // Test code to keep entering numbers and operators. Also used flag above;  
     this.calculate();
   }
 
@@ -88,12 +89,14 @@ class App extends Component {
 
   //==================================================================================
   // handles equal button click
-  calculate = (event) => {
+  calculate = (name) => {
 
     let result;
 
-    // I want this only to be set when equal button is pressed
-    this.equalFlag = true;
+    // Only when the equal button is clicked will the value of name be "=".
+    // This is because only the '=' button onClick is passing an argument to calculate().  
+    // Therefore, this.equalFlag will only be assigned 'true' when the equal button is pressed.
+    if(name === "=") this.equalFlag = true;
 
     switch (this.state.operator) {
       case "+":
