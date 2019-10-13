@@ -32,6 +32,9 @@ class App extends Component {
     //disables decimal button when pressed as to only use once per number.
     if (num === ".") this.decimalFlag = true;
 
+    // if a number is clicked directly after equals is pressed
+    if (this.equalFlag) this.clear();
+
     let tempnum;
 
     // operator button not pressed, entering first number
@@ -39,10 +42,10 @@ class App extends Component {
       tempnum = this.state.num1;
 
       // Toggles number to neg/pos if 'Neg' button pressed
-      if (num === "Neg") tempnum = (parseInt(tempnum) * -1).toString(); 
+      if (num === "Neg") tempnum = (parseInt(tempnum) * -1).toString();
       //Ternary used to remove leading zero from number unless decimal less than 1; 
       else tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
-      
+
 
       this.setState({ num1: tempnum, display: tempnum });
     }
@@ -50,14 +53,14 @@ class App extends Component {
     else {
       // Test code to keep entering numbers and operators. Alsoused flag above; 
       //this.secondOp = true;
-      
+
       tempnum = this.state.num2;
-      
+
       // Toggles number to neg/pos if 'Neg' button pressed
       if (num === "Neg") tempnum = (parseInt(tempnum) * -1).toString();
       //Ternary used to remove leading zero from number unless decimal less than 1;  
       else tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
-      
+
 
       this.setState({ num2: tempnum, display: tempnum });
 
@@ -70,8 +73,8 @@ class App extends Component {
   operatorButtonHandler = (oper) => {
     this.decimalFlag = false;
     this.setState({ operator: oper });
-    
-    
+
+
     // Test code to keep entering numbers and operators. Alsoused flag above;  
     this.calculate();
   }
@@ -79,14 +82,17 @@ class App extends Component {
   //==================================================================================
   clear = () => {
     this.decimalFlag = false;
+    this.equalFlag = false;
     this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false });
   }
 
   //==================================================================================
   // handles equal button click
-  calculate = () => {
+  calculate = (event) => {
 
     let result;
+
+    // I want this only to be set when equal button is pressed
     this.equalFlag = true;
 
     switch (this.state.operator) {
@@ -111,9 +117,7 @@ class App extends Component {
           : (parseInt(this.state.num1) / parseInt(this.state.num2)).toString();
 
         this.setState({ result: result, display: result, disableAll: true });
-
         break;
-
       default:
         break;
     }
