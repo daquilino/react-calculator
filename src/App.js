@@ -20,9 +20,6 @@ class App extends Component {
     this.decimalFlag = false;
     this.equalFlag = false;
 
-
-    // Test code to keep entering numbers and operators. Alsoused flag above; 
-    //this.secondOp = false;
   }
 
   //==================================================================================
@@ -34,11 +31,34 @@ class App extends Component {
 
     // if a number is clicked directly after equals is pressed
     if (this.equalFlag) this.clear();
-
+    
     let tempnum;
+
+console.log("this.state.operator", this.state.operator);
+console.log("this.state.num1", this.state.num1);
+/*  
+    The Issue is that setState is asycrounous,
+    so on line 33 when clear is called. The code below will run 
+    before this.state.num1 or this.state.operator is finished updating.
+
+    A solution would be to wrap to create another function with this code.
+    Let call it enterNumber(num);
+
+    Then have numberButtonHandler(num){
+      if (this.equalFlag){
+         this.decimalFlag = false;
+        this.equalFlag = false;
+        this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false }, enterNumber(num));
+
+      }else{
+        enterNumber(num);
+      }
+    }
+*/
 
     // operator button not pressed, entering first number
     if (!this.state.operator) {
+console.log("entering first number");
       tempnum = this.state.num1;
 
       // Toggles number to neg/pos if 'Neg' button pressed
@@ -51,9 +71,8 @@ class App extends Component {
     }
     // Entering second number
     else {
-      // Test code to keep entering numbers and operators. Alsoused flag above; 
-      //this.secondOp = true;
-
+     
+console.log("entering second number");
       tempnum = this.state.num2;
 
       // Toggles number to neg/pos if 'Neg' button pressed
@@ -81,7 +100,7 @@ class App extends Component {
   }
 
   //==================================================================================
-  clear = () => {
+  clear = () => {   
     this.decimalFlag = false;
     this.equalFlag = false;
     this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false });
@@ -101,16 +120,16 @@ class App extends Component {
     switch (this.state.operator) {
       case "+":
         result = (parseInt(this.state.num1) + parseInt(this.state.num2)).toString();
-        this.setState({ result: result, display: result, num1: result, num2: "0" });
+        this.setState({ result: result, display: result, num1: result, num2: "0", operator: null });
         break;
       case "-":
         result = (parseInt(this.state.num1) - parseInt(this.state.num2)).toString();
-        this.setState({ result: result, display: result, num1: result, num2: "0" });
+        this.setState({ result: result, display: result, num1: result, num2: "0", operator: null });
 
         break;
       case "×":
         result = (parseInt(this.state.num1) * parseInt(this.state.num2)).toString();
-        this.setState({ result: result, display: result, num1: result, num2: "0" });
+        this.setState({ result: result, display: result, num1: result, num2: "0", operator: null });
 
         break;
       case "÷":
@@ -119,7 +138,7 @@ class App extends Component {
           ? "Cannot Divide By Zero"
           : (parseInt(this.state.num1) / parseInt(this.state.num2)).toString();
 
-        this.setState({ result: result, display: result, disableAll: true });
+        this.setState({ result: result, display: result, disableAll: true, operator: null});
         break;
       default:
         break;
@@ -127,6 +146,7 @@ class App extends Component {
   }
 
   render() {
+ 
     return (
       <main className="container">
         <Row>
