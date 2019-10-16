@@ -22,43 +22,39 @@ class App extends Component {
 
   }
 
+
   //==================================================================================
   // handles number button click
   numberButtonHandler = (num) => {
+    if (this.equalFlag) {
+      this.decimalFlag = false;
+      this.equalFlag = false;
+      this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false }, 
+      this.enterNumber(num));
+
+    } else {
+      this.enterNumber(num);
+    }
+  }
+
+
+  //==================================================================================
+  // builts number
+  enterNumber = (num) => {
 
     //disables decimal button when pressed as to only use once per number.
     if (num === ".") this.decimalFlag = true;
 
     // if a number is clicked directly after equals is pressed
-    if (this.equalFlag) this.clear();
-    
+    //if (this.equalFlag) this.clear();
+
     let tempnum;
 
-console.log("this.state.operator", this.state.operator);
-console.log("this.state.num1", this.state.num1);
-/*  
-    The Issue is that setState is asycrounous,
-    so on line 33 when clear is called. The code below will run 
-    before this.state.num1 or this.state.operator is finished updating.
-
-    A solution would be to wrap to create another function with this code.
-    Let call it enterNumber(num);
-
-    Then have numberButtonHandler(num){
-      if (this.equalFlag){
-         this.decimalFlag = false;
-        this.equalFlag = false;
-        this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false }, enterNumber(num));
-
-      }else{
-        enterNumber(num);
-      }
-    }
-*/
+   
 
     // operator button not pressed, entering first number
     if (!this.state.operator) {
-console.log("entering first number");
+      console.log("entering first number");
       tempnum = this.state.num1;
 
       // Toggles number to neg/pos if 'Neg' button pressed
@@ -66,13 +62,11 @@ console.log("entering first number");
       //Ternary used to remove leading zero from number unless decimal less than 1; 
       else tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
 
-
       this.setState({ num1: tempnum, display: tempnum });
     }
     // Entering second number
     else {
-     
-console.log("entering second number");
+
       tempnum = this.state.num2;
 
       // Toggles number to neg/pos if 'Neg' button pressed
@@ -100,7 +94,7 @@ console.log("entering second number");
   }
 
   //==================================================================================
-  clear = () => {   
+  clear = () => {
     this.decimalFlag = false;
     this.equalFlag = false;
     this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false });
@@ -115,7 +109,7 @@ console.log("entering second number");
     // Only when the equal button is clicked will the value of name be "=".
     // This is because only the '=' button onClick is passing an argument to calculate().  
     // Therefore, this.equalFlag will only be assigned 'true' when the equal button is pressed.
-    if(name === "=") this.equalFlag = true;
+    if (name === "=") this.equalFlag = true;
 
     switch (this.state.operator) {
       case "+":
@@ -138,7 +132,7 @@ console.log("entering second number");
           ? "Cannot Divide By Zero"
           : (parseInt(this.state.num1) / parseInt(this.state.num2)).toString();
 
-        this.setState({ result: result, display: result, disableAll: true, operator: null});
+        this.setState({ result: result, display: result, disableAll: true, operator: null });
         break;
       default:
         break;
@@ -146,7 +140,7 @@ console.log("entering second number");
   }
 
   render() {
- 
+
     return (
       <main className="container">
         <Row>
