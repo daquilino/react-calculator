@@ -26,17 +26,19 @@ class App extends Component {
   //==================================================================================
   // handles number button click
   numberButtonHandler = (num) => {
+
+    // If a user starts entering a number after the '=' button was pressed.
+    // We want to reset values & flags, then begin building number. 
     if (this.equalFlag) {
+
       this.decimalFlag = false;
       this.equalFlag = false;
-      this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false }, 
-      this.enterNumber(num));
-
+      this.setState({ num1: "0", num2: "0", result: "0", operator: null, display: "0", disableAll: false }, () => this.enterNumber(num));
     } else {
+      // We proced as normal
       this.enterNumber(num);
     }
   }
-
 
   //==================================================================================
   // builts number
@@ -45,16 +47,11 @@ class App extends Component {
     //disables decimal button when pressed as to only use once per number.
     if (num === ".") this.decimalFlag = true;
 
-    // if a number is clicked directly after equals is pressed
-    //if (this.equalFlag) this.clear();
-
     let tempnum;
-
-   
 
     // operator button not pressed, entering first number
     if (!this.state.operator) {
-      console.log("entering first number");
+ 
       tempnum = this.state.num1;
 
       // Toggles number to neg/pos if 'Neg' button pressed
@@ -74,9 +71,7 @@ class App extends Component {
       //Ternary used to remove leading zero from number unless decimal less than 1;  
       else tempnum = (tempnum === "0" && num !== ".") ? num.toString() : tempnum + num;
 
-
       this.setState({ num2: tempnum, display: tempnum });
-
     }
   }
 
@@ -176,7 +171,7 @@ class App extends Component {
               <Button name={"="} col={9} onClick={this.calculate} disabled={this.state.disableAll} />
               <Button name={"Neg"} col={3} onClick={this.numberButtonHandler} disabled={this.state.disableAll} />
             </Row>
-
+            
           </div>
         </Row>
       </main>
